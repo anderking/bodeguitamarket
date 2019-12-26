@@ -1,6 +1,8 @@
 'use strict'
 
 const express = require('express')
+const bodyParser = require('body-parser')
+
 const json = require('express')
 const morgan = require('morgan')
 
@@ -15,6 +17,9 @@ const rDetailPayment = require('./routes/rDetailPayment')
 
 //initialization
 const app = express()
+
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}))
+app.use(bodyParser.json({limit: "50mb"}))
 
 //midelwares
 app.use(morgan('dev'))
